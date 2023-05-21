@@ -101,7 +101,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -146,7 +149,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-journal">
 <li>
-    <a class="dropdown-item" href="../../content/01_journal/01_tidyverse.html">
+    <a class="dropdown-item" href="../../content/01_journal/01_tidyverse.qmd">
  <span class="dropdown-text">01 Tidyverse</span></a>
   </li>  
         <li>
@@ -193,10 +196,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#joining-data--" id="toc-joining-data--" class="nav-link" data-scroll-target="#joining-data--"><span class="toc-section-number">6</span>  4.0 Joining Data —-</a></li>
   <li><a href="#wrangling-data--" id="toc-wrangling-data--" class="nav-link" data-scroll-target="#wrangling-data--"><span class="toc-section-number">7</span>  5.0 Wrangling Data —-</a></li>
   <li><a href="#business-insights--" id="toc-business-insights--" class="nav-link" data-scroll-target="#business-insights--"><span class="toc-section-number">8</span>  6.0 Business Insights —-</a></li>
-  <li><a href="#sales-by-year--" id="toc-sales-by-year--" class="nav-link" data-scroll-target="#sales-by-year--"><span class="toc-section-number">9</span>  6.1 Sales by Year —-</a></li>
+  <li><a href="#sales-by-state--" id="toc-sales-by-state--" class="nav-link" data-scroll-target="#sales-by-state--"><span class="toc-section-number">9</span>  6.1 Sales by State —-</a></li>
   <li><a href="#step-1---manipulate" id="toc-step-1---manipulate" class="nav-link" data-scroll-target="#step-1---manipulate"><span class="toc-section-number">10</span>  Step 1 - Manipulate</a></li>
   <li><a href="#step-2---visualize" id="toc-step-2---visualize" class="nav-link" data-scroll-target="#step-2---visualize"><span class="toc-section-number">11</span>  Step 2 - Visualize</a></li>
-  <li><a href="#sales-by-year-and-category-2--" id="toc-sales-by-year-and-category-2--" class="nav-link" data-scroll-target="#sales-by-year-and-category-2--"><span class="toc-section-number">12</span>  6.2 Sales by Year and Category 2 —-</a></li>
+  <li><a href="#sales-by-year-and-state--" id="toc-sales-by-year-and-state--" class="nav-link" data-scroll-target="#sales-by-year-and-state--"><span class="toc-section-number">12</span>  6.2 Sales by Year and State —-</a></li>
   <li><a href="#step-1---manipulate-1" id="toc-step-1---manipulate-1" class="nav-link" data-scroll-target="#step-1---manipulate-1"><span class="toc-section-number">13</span>  Step 1 - Manipulate</a></li>
   <li><a href="#step-2---visualize-1" id="toc-step-2---visualize-1" class="nav-link" data-scroll-target="#step-2---visualize-1"><span class="toc-section-number">14</span>  Step 2 - Visualize</a></li>
   <li><a href="#writing-files--" id="toc-writing-files--" class="nav-link" data-scroll-target="#writing-files--"><span class="toc-section-number">15</span>  7.0 Writing Files —-</a></li>
@@ -232,7 +235,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="header-section-number">2</span> SALES ANALYSIS —-</h1>
 </section><section id="load-libraries--" class="level1" data-number="3"><h1 data-number="3">
 <span class="header-section-number">3</span> 1.0 Load libraries —-</h1>
-<div class="cell" data-hash="01_tidyverse_cache/html/unnamed-chunk-1_b21c8e1dac2755d963a8c8024a4b453c">
+<div class="cell" data-hash="01_tidyverse_challange_cache/html/unnamed-chunk-1_ab20600495c9d546fc18ac5df574511f">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>#&gt; Warning: package 'tidyverse' was built under R version 4.2.3</code></pre>
@@ -280,17 +283,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell-output cell-output-stderr">
 <pre><code>#&gt; Warning: package 'readxl' was built under R version 4.2.3</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">library</span>(lubridate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="importing-files--" class="level1" data-number="4"><h1 data-number="4">
 <span class="header-section-number">4</span> 2.0 Importing Files —-</h1>
-<div class="cell" data-hash="01_tidyverse_cache/html/unnamed-chunk-2_7f1ef267404d8f10243b38412a81e5ce">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>bikes <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="at">path =</span> <span class="st">"C:/Users/sedit/Desktop/SadiR/ss23-bdsb-Sadtom98/content/01_journal/01_tidyverse_files/Bikes/01_bike_sales/01_raw_data/bikes.xlsx"</span>)</span>
-<span id="cb15-2"><a href="#cb15-2"></a></span>
-<span id="cb15-3"><a href="#cb15-3"></a></span>
-<span id="cb15-4"><a href="#cb15-4"></a>bikeshops <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="at">path =</span> <span class="st">"C:/Users/sedit/Desktop/SadiR/ss23-bdsb-Sadtom98/content/01_journal/01_tidyverse_files/Bikes/01_bike_sales/01_raw_data/bikeshops.xlsx"</span>)</span>
-<span id="cb15-5"><a href="#cb15-5"></a></span>
-<span id="cb15-6"><a href="#cb15-6"></a></span>
-<span id="cb15-7"><a href="#cb15-7"></a>orderlines <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"C:/Users/sedit/Desktop/SadiR/ss23-bdsb-Sadtom98/content/01_journal/01_tidyverse_files/Bikes/01_bike_sales/01_raw_data/orderlines.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="01_tidyverse_challange_cache/html/unnamed-chunk-2_2e91d300dc59f7dca58bf7fa69c378c0">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>bikes <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="at">path =</span> <span class="st">"C:/Users/sedit/Desktop/SadiR/ss23-bdsb-Sadtom98/content/01_journal/01_tidyverse_files/Bikes/01_bike_sales/01_raw_data/bikes.xlsx"</span>)</span>
+<span id="cb16-2"><a href="#cb16-2"></a></span>
+<span id="cb16-3"><a href="#cb16-3"></a></span>
+<span id="cb16-4"><a href="#cb16-4"></a>bikeshops <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="at">path =</span> <span class="st">"C:/Users/sedit/Desktop/SadiR/ss23-bdsb-Sadtom98/content/01_journal/01_tidyverse_files/Bikes/01_bike_sales/01_raw_data/bikeshops.xlsx"</span>)</span>
+<span id="cb16-5"><a href="#cb16-5"></a></span>
+<span id="cb16-6"><a href="#cb16-6"></a></span>
+<span id="cb16-7"><a href="#cb16-7"></a>orderlines <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"C:/Users/sedit/Desktop/SadiR/ss23-bdsb-Sadtom98/content/01_journal/01_tidyverse_files/Bikes/01_bike_sales/01_raw_data/orderlines.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>#&gt; New names:
 #&gt; • `` -&gt; `...1`</code></pre>
@@ -298,8 +302,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section><section id="examining-data--" class="level1" data-number="5"><h1 data-number="5">
 <span class="header-section-number">5</span> 3.0 Examining Data —-</h1>
-<div class="cell" data-hash="01_tidyverse_cache/html/unnamed-chunk-3_4e7d7ef5f46647f905535e9424a37200">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">glimpse</span>(orderlines)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="01_tidyverse_challange_cache/html/unnamed-chunk-3_7a9f07ac60e236ac9735d48fa0c8dc4e">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">glimpse</span>(orderlines)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt; Rows: 15,644
 #&gt; Columns: 7
@@ -314,26 +318,71 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section><section id="joining-data--" class="level1" data-number="6"><h1 data-number="6">
 <span class="header-section-number">6</span> 4.0 Joining Data —-</h1>
-<div class="cell" data-hash="01_tidyverse_cache/html/unnamed-chunk-4_1f7a07651747871d1da5aca75c255646">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>bike_orderlines <span class="ot">&lt;-</span> <span class="fu">left_join</span>(orderlines, bikes, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"product.id"</span> <span class="ot">=</span> <span class="st">"bike.id"</span>)) <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(bikeshops, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"customer.id"</span> <span class="ot">=</span> <span class="st">"bikeshop.id"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="01_tidyverse_challange_cache/html/unnamed-chunk-4_ced6f48e0e5a3bc5c1215563a4410468">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>bike_orderlines <span class="ot">&lt;-</span> <span class="fu">left_join</span>(orderlines, bikes, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"product.id"</span> <span class="ot">=</span> <span class="st">"bike.id"</span>)) <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(bikeshops, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"customer.id"</span> <span class="ot">=</span> <span class="st">"bikeshop.id"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="wrangling-data--" class="level1" data-number="7"><h1 data-number="7">
 <span class="header-section-number">7</span> 5.0 Wrangling Data —-</h1>
-<div class="cell" data-hash="01_tidyverse_cache/html/unnamed-chunk-5_ff5fdb382e7a8017b14449ed51642b53">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>bike_orderlines_wrangled <span class="ot">&lt;-</span> bike_orderlines <span class="sc">%&gt;%</span></span>
-<span id="cb20-2"><a href="#cb20-2"></a>  <span class="fu">separate</span>(<span class="at">col    =</span> location,</span>
-<span id="cb20-3"><a href="#cb20-3"></a>           <span class="at">into   =</span> <span class="fu">c</span>(<span class="st">"City"</span>, <span class="st">"State"</span>), <span class="at">sep =</span> <span class="st">","</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="01_tidyverse_challange_cache/html/unnamed-chunk-5_ea62892f616c8a6551d91d9a7d2326a1">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>bike_orderlines_wrangled <span class="ot">&lt;-</span> bike_orderlines <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a>  <span class="fu">separate</span>(<span class="at">col    =</span> location,</span>
+<span id="cb21-3"><a href="#cb21-3"></a>           <span class="at">into   =</span> <span class="fu">c</span>(<span class="st">"City"</span>, <span class="st">"State"</span>), <span class="at">sep =</span> <span class="st">","</span>) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">total.price =</span> price <span class="sc">*</span> quantity) <span class="sc">%&gt;%</span></span>
+<span id="cb21-4"><a href="#cb21-4"></a><span class="fu">set_names</span>(<span class="fu">names</span>(.) <span class="sc">%&gt;%</span> <span class="fu">str_replace_all</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">."</span>, <span class="st">"_"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="business-insights--" class="level1" data-number="8"><h1 data-number="8">
 <span class="header-section-number">8</span> 6.0 Business Insights —-</h1>
-</section><section id="sales-by-year--" class="level1" data-number="9"><h1 data-number="9">
-<span class="header-section-number">9</span> 6.1 Sales by Year —-</h1>
+</section><section id="sales-by-state--" class="level1" data-number="9"><h1 data-number="9">
+<span class="header-section-number">9</span> 6.1 Sales by State —-</h1>
+<div class="cell" data-hash="01_tidyverse_challange_cache/html/unnamed-chunk-6_2195fc72d7f7eeb2e242fc173a07f44e">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>sales_by_state <span class="ot">&lt;-</span> bike_orderlines_wrangled <span class="sc">%&gt;%</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a> </span>
+<span id="cb22-3"><a href="#cb22-3"></a>  <span class="co"># Select columns</span></span>
+<span id="cb22-4"><a href="#cb22-4"></a>  <span class="fu">select</span>(order_date, total_price, State) <span class="sc">%&gt;%</span></span>
+<span id="cb22-5"><a href="#cb22-5"></a></span>
+<span id="cb22-6"><a href="#cb22-6"></a>  <span class="co"># Add year column</span></span>
+<span id="cb22-7"><a href="#cb22-7"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">year</span>(order_date)) <span class="sc">%&gt;%</span></span>
+<span id="cb22-8"><a href="#cb22-8"></a> </span>
+<span id="cb22-9"><a href="#cb22-9"></a>  <span class="co"># Grouping by year and summarizing sales</span></span>
+<span id="cb22-10"><a href="#cb22-10"></a>  <span class="fu">group_by</span>(State) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-11"><a href="#cb22-11"></a>  <span class="fu">summarize</span>(<span class="at">sales =</span> <span class="fu">sum</span>(total_price)) <span class="sc">%&gt;%</span></span>
+<span id="cb22-12"><a href="#cb22-12"></a> </span>
+<span id="cb22-13"><a href="#cb22-13"></a>  <span class="co"># Optional: Add a column that turns the numbers into a currency format </span></span>
+<span id="cb22-14"><a href="#cb22-14"></a>  <span class="co"># (makes it in the plot optically more appealing)</span></span>
+<span id="cb22-15"><a href="#cb22-15"></a>  <span class="co"># mutate(sales_text = scales::dollar(sales)) &lt;- Works for dollar values</span></span>
+<span id="cb22-16"><a href="#cb22-16"></a>  <span class="fu">mutate</span>(<span class="at">state_text =</span> scales<span class="sc">::</span><span class="fu">dollar</span>(sales, <span class="at">big.mark =</span> <span class="st">"."</span>, </span>
+<span id="cb22-17"><a href="#cb22-17"></a>                                     <span class="at">decimal.mark =</span> <span class="st">","</span>, </span>
+<span id="cb22-18"><a href="#cb22-18"></a>                                     <span class="at">prefix =</span> <span class="st">""</span>, </span>
+<span id="cb22-19"><a href="#cb22-19"></a>                                     <span class="at">suffix =</span> <span class="st">" €"</span>))</span>
+<span id="cb22-20"><a href="#cb22-20"></a></span>
+<span id="cb22-21"><a href="#cb22-21"></a>sales_by_state</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["State"],"name":[1],"type":["chr"],"align":["left"]},{"label":["sales"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["state_text"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"Baden-Württemberg","2":"6521090","3":"6.521.090 €"},{"1":"Bavaria","2":"6742819","3":"6.742.819 €"},{"1":"Berlin","2":"1128433","3":"1.128.433 €"},{"1":"Bremen","2":"10653499","3":"10.653.499 €"},{"1":"Hamburg","2":"3874756","3":"3.874.756 €"},{"1":"Hesse","2":"1558901","3":"1.558.901 €"},{"1":"Lower Saxony","2":"4107115","3":"4.107.115 €"},{"1":"Mecklenburg-Western Pomerania","2":"618974","3":"618.974 €"},{"1":"North Rhine-Westphalia","2":"21200613","3":"21.200.613 €"},{"1":"Saxony","2":"2230245","3":"2.230.245 €"},{"1":"Saxony-Anhalt","2":"569614","3":"569.614 €"},{"1":"Schleswig-Holstein","2":"3224749","3":"3.224.749 €"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
 </section><section id="step-1---manipulate" class="level1" data-number="10"><h1 data-number="10">
 <span class="header-section-number">10</span> Step 1 - Manipulate</h1>
 </section><section id="step-2---visualize" class="level1" data-number="11"><h1 data-number="11">
 <span class="header-section-number">11</span> Step 2 - Visualize</h1>
-</section><section id="sales-by-year-and-category-2--" class="level1" data-number="12"><h1 data-number="12">
-<span class="header-section-number">12</span> 6.2 Sales by Year and Category 2 —-</h1>
+<div class="cell" data-hash="01_tidyverse_challange_cache/html/unnamed-chunk-7_00a679965955398f97e0df552709a0d2">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>sales_by_state <span class="sc">%&gt;%</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> State, <span class="at">y =</span> sales, <span class="at">fill =</span> State)) <span class="sc">+</span></span>
+<span id="cb23-3"><a href="#cb23-3"></a></span>
+<span id="cb23-4"><a href="#cb23-4"></a>  <span class="co"># Geometries</span></span>
+<span id="cb23-5"><a href="#cb23-5"></a>  <span class="fu">geom_col</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="01_tidyverse_challange_files/figure-html/unnamed-chunk-7-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="01_tidyverse_challange_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="sales-by-year-and-state--" class="level1" data-number="12"><h1 data-number="12">
+<span class="header-section-number">12</span> 6.2 Sales by Year and State —-</h1>
 </section><section id="step-1---manipulate-1" class="level1" data-number="13"><h1 data-number="13">
 <span class="header-section-number">13</span> Step 1 - Manipulate</h1>
 </section><section id="step-2---visualize-1" class="level1" data-number="14"><h1 data-number="14">
@@ -597,7 +646,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","loop":true,"descPosition":"bottom","closeEffect":"zoom"});</script>
 
 
 </body></html>

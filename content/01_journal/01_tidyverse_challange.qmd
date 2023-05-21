@@ -13,6 +13,8 @@ library(tidyverse)
 
 
 library(readxl)
+
+library(lubridate)
 ```
 
 # 2.0 Importing Files ----
@@ -39,25 +41,60 @@ glimpse(orderlines)
 bike_orderlines <- left_join(orderlines, bikes, by = c("product.id" = "bike.id")) %>% left_join(bikeshops, by = c("customer.id" = "bikeshop.id"))
 ```
 
-
 # 5.0 Wrangling Data ----
 
 ```{r}
 bike_orderlines_wrangled <- bike_orderlines %>%
   separate(col    = location,
-           into   = c("City", "State"), sep = ",")
+           into   = c("City", "State"), sep = ",") %>% mutate(total.price = price * quantity) %>%
+set_names(names(.) %>% str_replace_all("\\.", "_"))
 ```
 
-
 # 6.0 Business Insights ----
-# 6.1 Sales by Year ----
+# 6.1 Sales by State ----
+
+
+
+```{r}
+sales_by_state <- bike_orderlines_wrangled %>%
+ 
+  # Select columns
+  select(order_date, total_price, State) %>%
+
+  # Add year column
+  mutate(year = year(order_date)) %>%
+ 
+  # Grouping by year and summarizing sales
+  group_by(State) %>% 
+  summarize(sales = sum(total_price)) %>%
+ 
+  # Optional: Add a column that turns the numbers into a currency format 
+  # (makes it in the plot optically more appealing)
+  # mutate(sales_text = scales::dollar(sales)) <- Works for dollar values
+  mutate(state_text = scales::dollar(sales, big.mark = ".", 
+                                     decimal.mark = ",", 
+                                     prefix = "", 
+                                     suffix = " €"))
+
+sales_by_state
+```
+
 
 # Step 1 - Manipulate
 
 # Step 2 - Visualize
 
 
-# 6.2 Sales by Year and Category 2 ----
+```{r}
+sales_by_state %>%
+ggplot(aes(x = State, y = sales, fill = State)) +
+
+  # Geometries
+  geom_col()
+```
+
+
+# 6.2 Sales by Year and State ----
 
 # Step 1 - Manipulate
 
