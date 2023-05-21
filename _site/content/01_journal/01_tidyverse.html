@@ -149,7 +149,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-journal">
 <li>
-    <a class="dropdown-item" href="../../content/01_journal/01_tidyverse.qmd">
+    <a class="dropdown-item" href="../../content/01_journal/01_tidyverse.html">
  <span class="dropdown-text">01 Tidyverse</span></a>
   </li>  
         <li>
@@ -235,66 +235,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="header-section-number">2</span> SALES ANALYSIS —-</h1>
 </section><section id="load-libraries--" class="level1" data-number="3"><h1 data-number="3">
 <span class="header-section-number">3</span> 1.0 Load libraries —-</h1>
-<div class="cell" data-hash="01_tidyverse_challange_cache/html/unnamed-chunk-1_ab20600495c9d546fc18ac5df574511f">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>#&gt; Warning: package 'tidyverse' was built under R version 4.2.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>#&gt; Warning: package 'ggplot2' was built under R version 4.2.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>#&gt; Warning: package 'tibble' was built under R version 4.2.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>#&gt; Warning: package 'tidyr' was built under R version 4.2.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>#&gt; Warning: package 'readr' was built under R version 4.2.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>#&gt; Warning: package 'purrr' was built under R version 4.2.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>#&gt; Warning: package 'dplyr' was built under R version 4.2.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>#&gt; Warning: package 'stringr' was built under R version 4.2.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>#&gt; Warning: package 'forcats' was built under R version 4.2.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>#&gt; Warning: package 'lubridate' was built under R version 4.2.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>#&gt; ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-#&gt; ✔ dplyr     1.1.2     ✔ readr     2.1.4
-#&gt; ✔ forcats   1.0.0     ✔ stringr   1.5.0
-#&gt; ✔ ggplot2   3.4.2     ✔ tibble    3.2.1
-#&gt; ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-#&gt; ✔ purrr     1.0.1     
-#&gt; ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-#&gt; ✖ dplyr::filter() masks stats::filter()
-#&gt; ✖ dplyr::lag()    masks stats::lag()
-#&gt; ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">library</span>(readxl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>#&gt; Warning: package 'readxl' was built under R version 4.2.3</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">library</span>(lubridate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="01_tidyverse_cache/html/unnamed-chunk-1_1b1b667c6cf57018ccbd8c0b0a55dae1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-5"><a href="#cb1-5"></a></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="fu">library</span>(lubridate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="importing-files--" class="level1" data-number="4"><h1 data-number="4">
 <span class="header-section-number">4</span> 2.0 Importing Files —-</h1>
-<div class="cell" data-hash="01_tidyverse_challange_cache/html/unnamed-chunk-2_2e91d300dc59f7dca58bf7fa69c378c0">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>bikes <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="at">path =</span> <span class="st">"C:/Users/sedit/Desktop/SadiR/ss23-bdsb-Sadtom98/content/01_journal/01_tidyverse_files/Bikes/01_bike_sales/01_raw_data/bikes.xlsx"</span>)</span>
-<span id="cb16-2"><a href="#cb16-2"></a></span>
-<span id="cb16-3"><a href="#cb16-3"></a></span>
-<span id="cb16-4"><a href="#cb16-4"></a>bikeshops <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="at">path =</span> <span class="st">"C:/Users/sedit/Desktop/SadiR/ss23-bdsb-Sadtom98/content/01_journal/01_tidyverse_files/Bikes/01_bike_sales/01_raw_data/bikeshops.xlsx"</span>)</span>
-<span id="cb16-5"><a href="#cb16-5"></a></span>
-<span id="cb16-6"><a href="#cb16-6"></a></span>
-<span id="cb16-7"><a href="#cb16-7"></a>orderlines <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"C:/Users/sedit/Desktop/SadiR/ss23-bdsb-Sadtom98/content/01_journal/01_tidyverse_files/Bikes/01_bike_sales/01_raw_data/orderlines.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="01_tidyverse_cache/html/unnamed-chunk-2_7f1ef267404d8f10243b38412a81e5ce">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>bikes <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="at">path =</span> <span class="st">"C:/Users/sedit/Desktop/SadiR/ss23-bdsb-Sadtom98/content/01_journal/01_tidyverse_files/Bikes/01_bike_sales/01_raw_data/bikes.xlsx"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a></span>
+<span id="cb2-4"><a href="#cb2-4"></a>bikeshops <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="at">path =</span> <span class="st">"C:/Users/sedit/Desktop/SadiR/ss23-bdsb-Sadtom98/content/01_journal/01_tidyverse_files/Bikes/01_bike_sales/01_raw_data/bikeshops.xlsx"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5"></a></span>
+<span id="cb2-6"><a href="#cb2-6"></a></span>
+<span id="cb2-7"><a href="#cb2-7"></a>orderlines <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"C:/Users/sedit/Desktop/SadiR/ss23-bdsb-Sadtom98/content/01_journal/01_tidyverse_files/Bikes/01_bike_sales/01_raw_data/orderlines.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>#&gt; New names:
 #&gt; • `` -&gt; `...1`</code></pre>
@@ -302,8 +260,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section><section id="examining-data--" class="level1" data-number="5"><h1 data-number="5">
 <span class="header-section-number">5</span> 3.0 Examining Data —-</h1>
-<div class="cell" data-hash="01_tidyverse_challange_cache/html/unnamed-chunk-3_7a9f07ac60e236ac9735d48fa0c8dc4e">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">glimpse</span>(orderlines)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="01_tidyverse_cache/html/unnamed-chunk-3_4e7d7ef5f46647f905535e9424a37200">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">glimpse</span>(orderlines)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt; Rows: 15,644
 #&gt; Columns: 7
@@ -318,43 +276,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section><section id="joining-data--" class="level1" data-number="6"><h1 data-number="6">
 <span class="header-section-number">6</span> 4.0 Joining Data —-</h1>
-<div class="cell" data-hash="01_tidyverse_challange_cache/html/unnamed-chunk-4_ced6f48e0e5a3bc5c1215563a4410468">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>bike_orderlines <span class="ot">&lt;-</span> <span class="fu">left_join</span>(orderlines, bikes, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"product.id"</span> <span class="ot">=</span> <span class="st">"bike.id"</span>)) <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(bikeshops, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"customer.id"</span> <span class="ot">=</span> <span class="st">"bikeshop.id"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="01_tidyverse_cache/html/unnamed-chunk-4_1f7a07651747871d1da5aca75c255646">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>bike_orderlines <span class="ot">&lt;-</span> <span class="fu">left_join</span>(orderlines, bikes, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"product.id"</span> <span class="ot">=</span> <span class="st">"bike.id"</span>)) <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(bikeshops, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"customer.id"</span> <span class="ot">=</span> <span class="st">"bikeshop.id"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="wrangling-data--" class="level1" data-number="7"><h1 data-number="7">
 <span class="header-section-number">7</span> 5.0 Wrangling Data —-</h1>
-<div class="cell" data-hash="01_tidyverse_challange_cache/html/unnamed-chunk-5_ea62892f616c8a6551d91d9a7d2326a1">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>bike_orderlines_wrangled <span class="ot">&lt;-</span> bike_orderlines <span class="sc">%&gt;%</span></span>
-<span id="cb21-2"><a href="#cb21-2"></a>  <span class="fu">separate</span>(<span class="at">col    =</span> location,</span>
-<span id="cb21-3"><a href="#cb21-3"></a>           <span class="at">into   =</span> <span class="fu">c</span>(<span class="st">"City"</span>, <span class="st">"State"</span>), <span class="at">sep =</span> <span class="st">","</span>) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">total.price =</span> price <span class="sc">*</span> quantity) <span class="sc">%&gt;%</span></span>
-<span id="cb21-4"><a href="#cb21-4"></a><span class="fu">set_names</span>(<span class="fu">names</span>(.) <span class="sc">%&gt;%</span> <span class="fu">str_replace_all</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">."</span>, <span class="st">"_"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="01_tidyverse_cache/html/unnamed-chunk-5_a88e90b232bdf405c35161813c1184b9">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>bike_orderlines_wrangled <span class="ot">&lt;-</span> bike_orderlines <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">separate</span>(<span class="at">col    =</span> location,</span>
+<span id="cb7-3"><a href="#cb7-3"></a>           <span class="at">into   =</span> <span class="fu">c</span>(<span class="st">"City"</span>, <span class="st">"State"</span>), <span class="at">sep =</span> <span class="st">","</span>) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">total.price =</span> price <span class="sc">*</span> quantity) <span class="sc">%&gt;%</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="fu">set_names</span>(<span class="fu">names</span>(.) <span class="sc">%&gt;%</span> <span class="fu">str_replace_all</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">."</span>, <span class="st">"_"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="business-insights--" class="level1" data-number="8"><h1 data-number="8">
 <span class="header-section-number">8</span> 6.0 Business Insights —-</h1>
 </section><section id="sales-by-state--" class="level1" data-number="9"><h1 data-number="9">
 <span class="header-section-number">9</span> 6.1 Sales by State —-</h1>
-<div class="cell" data-hash="01_tidyverse_challange_cache/html/unnamed-chunk-6_2195fc72d7f7eeb2e242fc173a07f44e">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>sales_by_state <span class="ot">&lt;-</span> bike_orderlines_wrangled <span class="sc">%&gt;%</span></span>
-<span id="cb22-2"><a href="#cb22-2"></a> </span>
-<span id="cb22-3"><a href="#cb22-3"></a>  <span class="co"># Select columns</span></span>
-<span id="cb22-4"><a href="#cb22-4"></a>  <span class="fu">select</span>(order_date, total_price, State) <span class="sc">%&gt;%</span></span>
-<span id="cb22-5"><a href="#cb22-5"></a></span>
-<span id="cb22-6"><a href="#cb22-6"></a>  <span class="co"># Add year column</span></span>
-<span id="cb22-7"><a href="#cb22-7"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">year</span>(order_date)) <span class="sc">%&gt;%</span></span>
-<span id="cb22-8"><a href="#cb22-8"></a> </span>
-<span id="cb22-9"><a href="#cb22-9"></a>  <span class="co"># Grouping by year and summarizing sales</span></span>
-<span id="cb22-10"><a href="#cb22-10"></a>  <span class="fu">group_by</span>(State) <span class="sc">%&gt;%</span> </span>
-<span id="cb22-11"><a href="#cb22-11"></a>  <span class="fu">summarize</span>(<span class="at">sales =</span> <span class="fu">sum</span>(total_price)) <span class="sc">%&gt;%</span></span>
-<span id="cb22-12"><a href="#cb22-12"></a> </span>
-<span id="cb22-13"><a href="#cb22-13"></a>  <span class="co"># Optional: Add a column that turns the numbers into a currency format </span></span>
-<span id="cb22-14"><a href="#cb22-14"></a>  <span class="co"># (makes it in the plot optically more appealing)</span></span>
-<span id="cb22-15"><a href="#cb22-15"></a>  <span class="co"># mutate(sales_text = scales::dollar(sales)) &lt;- Works for dollar values</span></span>
-<span id="cb22-16"><a href="#cb22-16"></a>  <span class="fu">mutate</span>(<span class="at">state_text =</span> scales<span class="sc">::</span><span class="fu">dollar</span>(sales, <span class="at">big.mark =</span> <span class="st">"."</span>, </span>
-<span id="cb22-17"><a href="#cb22-17"></a>                                     <span class="at">decimal.mark =</span> <span class="st">","</span>, </span>
-<span id="cb22-18"><a href="#cb22-18"></a>                                     <span class="at">prefix =</span> <span class="st">""</span>, </span>
-<span id="cb22-19"><a href="#cb22-19"></a>                                     <span class="at">suffix =</span> <span class="st">" €"</span>))</span>
-<span id="cb22-20"><a href="#cb22-20"></a></span>
-<span id="cb22-21"><a href="#cb22-21"></a>sales_by_state</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="01_tidyverse_cache/html/unnamed-chunk-6_0f815389c00260b658b84f0340f177db">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>sales_by_state <span class="ot">&lt;-</span> bike_orderlines_wrangled <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a> </span>
+<span id="cb8-3"><a href="#cb8-3"></a>  <span class="co"># Select columns</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>  <span class="fu">select</span>(order_date, total_price, State) <span class="sc">%&gt;%</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a></span>
+<span id="cb8-6"><a href="#cb8-6"></a>  <span class="co"># Add year column</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">year</span>(order_date)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-8"><a href="#cb8-8"></a> </span>
+<span id="cb8-9"><a href="#cb8-9"></a>  <span class="co"># Grouping by year and summarizing sales</span></span>
+<span id="cb8-10"><a href="#cb8-10"></a>  <span class="fu">group_by</span>(State) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-11"><a href="#cb8-11"></a>  <span class="fu">summarize</span>(<span class="at">sales =</span> <span class="fu">sum</span>(total_price)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-12"><a href="#cb8-12"></a> </span>
+<span id="cb8-13"><a href="#cb8-13"></a>  <span class="co"># Optional: Add a column that turns the numbers into a currency format </span></span>
+<span id="cb8-14"><a href="#cb8-14"></a>  <span class="co"># (makes it in the plot optically more appealing)</span></span>
+<span id="cb8-15"><a href="#cb8-15"></a>  <span class="co"># mutate(sales_text = scales::dollar(sales)) &lt;- Works for dollar values</span></span>
+<span id="cb8-16"><a href="#cb8-16"></a>  <span class="fu">mutate</span>(<span class="at">state_text =</span> scales<span class="sc">::</span><span class="fu">dollar</span>(sales, <span class="at">big.mark =</span> <span class="st">"."</span>, </span>
+<span id="cb8-17"><a href="#cb8-17"></a>                                     <span class="at">decimal.mark =</span> <span class="st">","</span>, </span>
+<span id="cb8-18"><a href="#cb8-18"></a>                                     <span class="at">prefix =</span> <span class="st">""</span>, </span>
+<span id="cb8-19"><a href="#cb8-19"></a>                                     <span class="at">suffix =</span> <span class="st">" €"</span>))</span>
+<span id="cb8-20"><a href="#cb8-20"></a></span>
+<span id="cb8-21"><a href="#cb8-21"></a>sales_by_state</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -368,15 +326,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="header-section-number">10</span> Step 1 - Manipulate</h1>
 </section><section id="step-2---visualize" class="level1" data-number="11"><h1 data-number="11">
 <span class="header-section-number">11</span> Step 2 - Visualize</h1>
-<div class="cell" data-hash="01_tidyverse_challange_cache/html/unnamed-chunk-7_00a679965955398f97e0df552709a0d2">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>sales_by_state <span class="sc">%&gt;%</span></span>
-<span id="cb23-2"><a href="#cb23-2"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> State, <span class="at">y =</span> sales, <span class="at">fill =</span> State)) <span class="sc">+</span></span>
-<span id="cb23-3"><a href="#cb23-3"></a></span>
-<span id="cb23-4"><a href="#cb23-4"></a>  <span class="co"># Geometries</span></span>
-<span id="cb23-5"><a href="#cb23-5"></a>  <span class="fu">geom_col</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="01_tidyverse_cache/html/unnamed-chunk-7_83a1dee81d765714e2b5d78e63093f45">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>sales_by_state <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> State, <span class="at">y =</span> sales, <span class="at">fill =</span> State)) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a></span>
+<span id="cb9-4"><a href="#cb9-4"></a>  <span class="co"># Geometries</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a>  <span class="fu">geom_col</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="01_tidyverse_challange_files/figure-html/unnamed-chunk-7-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="01_tidyverse_challange_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></a></p>
+<figure class="figure"><p><a href="01_tidyverse_files/figure-html/unnamed-chunk-7-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="01_tidyverse_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
@@ -646,7 +604,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","loop":true,"descPosition":"bottom","closeEffect":"zoom"});</script>
+<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","descPosition":"bottom","loop":true,"closeEffect":"zoom"});</script>
 
 
 </body></html>
