@@ -253,7 +253,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section><section id="example" class="level1" data-number="2"><h1 data-number="2">
 <span class="header-section-number">2</span> Example</h1>
-<div class="cell" data-hash="02_data_acquisition_cache/html/unnamed-chunk-2_85e7577ec9aa183e1d494a5d21786abb">
+<div class="cell" data-hash="02_data_acquisition_cache/html/unnamed-chunk-2_b1f0a72a3e7d302fdd4183dcc4882410">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>url <span class="ot">&lt;-</span> <span class="st">"https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"</span></span>
 <span id="cb8-2"><a href="#cb8-2"></a><span class="co"># use that URL to scrape the S&amp;P 500 table using rvest</span></span>
 <span id="cb8-3"><a href="#cb8-3"></a><span class="fu">library</span>(rvest)</span>
@@ -267,7 +267,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb8-11"><a href="#cb8-11"></a>          <span class="co"># Extract the table and turn the list into a tibble</span></span>
 <span id="cb8-12"><a href="#cb8-12"></a>          <span class="fu">html_table</span>() <span class="sc">%&gt;%</span> </span>
 <span id="cb8-13"><a href="#cb8-13"></a>          .[[<span class="dv">1</span>]] <span class="sc">%&gt;%</span> </span>
-<span id="cb8-14"><a href="#cb8-14"></a>          <span class="fu">as_tibble</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-14"><a href="#cb8-14"></a>          <span class="fu">as_tibble</span>()</span>
+<span id="cb8-15"><a href="#cb8-15"></a>bike_data_lst <span class="ot">&lt;-</span> <span class="fu">fromJSON</span>(<span class="st">"C:/Users/sedit/Desktop/SadiR/ss23-bdsb-Sadtom98/content/01_journal/02_data_acquisition_/bike_data.json"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 

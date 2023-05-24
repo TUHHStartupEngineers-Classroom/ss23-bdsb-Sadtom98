@@ -40,6 +40,7 @@ sp_500 <- url %>%
           html_table() %>% 
           .[[1]] %>% 
           as_tibble()
+bike_data_lst <- fromJSON("C:/Users/sedit/Desktop/SadiR/ss23-bdsb-Sadtom98/content/01_journal/02_data_acquisition_/bike_data.json")
 
 
 ```
