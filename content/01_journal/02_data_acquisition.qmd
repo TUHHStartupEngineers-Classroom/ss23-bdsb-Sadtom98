@@ -3,12 +3,24 @@ title: "Data Acquisition"
 author: "Sadi Tomtulu"
 ---
 
-# Libraries
+# WEBSCRAPING ----
+
+# 1.0 LIBRARIES ----
+
+```{r}
+library(tidyverse) # Main Package - Loads dplyr, purrr, etc.
+library(rvest)     # HTML Hacking & Web Scraping
+library(xopen)     # Quickly opening URLs
+library(jsonlite)  # converts JSON files to R objects
+library(glue)      # concatenate strings
+library(stringi)   # character string/text processing
+```
+
+# Example
 
 ```{r}
 library(RSQLite)
-library(jsonlite)
-library(tidyverse)
+
 con <- dbConnect(drv = SQLite(), dbname = 'C:/Users/sedit/Desktop/SadiR/ss23-bdsb-Sadtom98/content/01_journal/02_data_acquisition_/Chinook_Sqlite.sqlite')
 dbListTables(con)
 
@@ -17,18 +29,16 @@ album_tbl <- tbl(con, "Album") %>% collect()
 dbDisconnect(con)
 con
 library(httr)
-library(glue)
+
 resp <- GET("https://swapi.dev/api/people/1/")
 resp
 ```
 
-# Example
 
 
 ```{r}
 url <- "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
 # use that URL to scrape the S&P 500 table using rvest
-library(rvest)
 
 sp_500 <- url %>%
           # read the HTML from the webpage
@@ -45,3 +55,16 @@ bike_data_lst <- fromJSON("C:/Users/sedit/Desktop/SadiR/ss23-bdsb-Sadtom98/conte
 
 ```
 
+# Challange 1st
+```{r}
+weather <- GET("https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m")
+weather
+hourly <- rawToChar(weather$content) %>% fromJSON()
+hour <- hourly$hourly$time
+temp <- hourly$hourly$temperature_2m
+df
+df <- data.frame(hour, temp)
+df <- df %>% mutate(day = day(df$hour))
+p <- df %>% ggplot() + geom_point(aes(x = hour , y = temp))
+p + guides(x = guide_axis(check.overlap = TRUE, n.dodge = 1)) + scale_x_discrete(breaks = waiver()) + theme(axis.text.x = element_text(angle=45))
+```
