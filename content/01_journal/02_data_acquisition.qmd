@@ -3,7 +3,6 @@ title: "Data Acquisition"
 author: "Sadi Tomtulu"
 ---
 
-
 # Libraries
 
 ```{r}
@@ -23,7 +22,7 @@ resp <- GET("https://swapi.dev/api/people/1/")
 resp
 ```
 
-# Examples
+# Example
 
 
 ```{r}
@@ -43,6 +42,4 @@ sp_500 <- url %>%
           as_tibble()
 
 ```
-
-
 
