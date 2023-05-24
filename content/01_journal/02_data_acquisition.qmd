@@ -1,8 +1,49 @@
 ---
 title: "Data Acquisition"
-author: "Joschka Schwarz"
+author: "Sadi Tomtulu"
 ---
 
-::: callout-note
-You can delete everything in here and start fresh.
-:::
+
+# Libraries
+
+```{r}
+library(RSQLite)
+library(jsonlite)
+library(tidyverse)
+con <- dbConnect(drv = SQLite(), dbname = 'C:/Users/sedit/Desktop/SadiR/ss23-bdsb-Sadtom98/content/01_journal/02_data_acquisition_files/Chinook_Sqlite.sqlite')
+dbListTables(con)
+
+tbl(con, "Album")
+album_tbl <- tbl(con, "Album") %>% collect()
+dbDisconnect(con)
+con
+library(httr)
+library(glue)
+resp <- GET("https://swapi.dev/api/people/1/")
+resp
+```
+
+# Examples
+
+
+```{r}
+url <- "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
+# use that URL to scrape the S&P 500 table using rvest
+library(rvest)
+
+sp_500 <- url %>%
+          # read the HTML from the webpage
+          read_html() %>%
+          # Get the nodes with the id
+          html_nodes(css = "#constituents") %>%
+          # html_nodes(xpath = "//*[@id='constituents']"") %>% 
+          # Extract the table and turn the list into a tibble
+          html_table() %>% 
+          .[[1]] %>% 
+          as_tibble()
+
+
+```
+
+
+
