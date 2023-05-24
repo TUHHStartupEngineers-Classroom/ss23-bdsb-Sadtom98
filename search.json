@@ -1,0 +1,30 @@
+[
+  {
+    "objectID": "content/01_journal/02_data_acquisition.html",
+    "href": "content/01_journal/02_data_acquisition.html",
+    "title": "Data Acquisition",
+    "section": "",
+    "text": "1 Libraries\n\nlibrary(RSQLite)\nlibrary(jsonlite)\nlibrary(tidyverse)\ncon <- dbConnect(drv = SQLite(), dbname = 'C:/Users/sedit/Desktop/SadiR/ss23-bdsb-Sadtom98/content/01_journal/02_data_acquisition_files/Chinook_Sqlite.sqlite')\ndbListTables(con)\n\n#>  [1] \"Album\"         \"Artist\"        \"Customer\"      \"Employee\"     \n#>  [5] \"Genre\"         \"Invoice\"       \"InvoiceLine\"   \"MediaType\"    \n#>  [9] \"Playlist\"      \"PlaylistTrack\" \"Track\"\n\ntbl(con, \"Album\")\n\n\n\n  \n\n\nalbum_tbl <- tbl(con, \"Album\") %>% collect()\ndbDisconnect(con)\ncon\n\n#> <SQLiteConnection>\n#>   DISCONNECTED\n\nlibrary(httr)\nlibrary(glue)\nresp <- GET(\"https://swapi.dev/api/people/1/\")\nresp\n\n#> Response [https://swapi.dev/api/people/1/]\n#>   Date: 2023-05-24 02:47\n#>   Status: 200\n#>   Content-Type: application/json\n#>   Size: 647 B\n\n\n\n2 Example\n\nurl <- \"https://en.wikipedia.org/wiki/List_of_S%26P_500_companies\"\n# use that URL to scrape the S&P 500 table using rvest\nlibrary(rvest)\n\nsp_500 <- url %>%\n          # read the HTML from the webpage\n          read_html() %>%\n          # Get the nodes with the id\n          html_nodes(css = \"#constituents\") %>%\n          # html_nodes(xpath = \"//*[@id='constituents']\"\") %>% \n          # Extract the table and turn the list into a tibble\n          html_table() %>% \n          .[[1]] %>% \n          as_tibble()"
+  },
+  {
+    "objectID": "content/01_journal/03_data_wrangling.html",
+    "href": "content/01_journal/03_data_wrangling.html",
+    "title": "Data Wrangling",
+    "section": "",
+    "text": "Note\n\n\n\nYou can delete everything in here and start fresh."
+  },
+  {
+    "objectID": "content/01_journal/04_data_visualization.html",
+    "href": "content/01_journal/04_data_visualization.html",
+    "title": "Data Visualization",
+    "section": "",
+    "text": "Note\n\n\n\nYou can delete everything in here and start fresh."
+  },
+  {
+    "objectID": "content/03_other/06_links.html",
+    "href": "content/03_other/06_links.html",
+    "title": "Links",
+    "section": "",
+    "text": "R is a free open-source programming language that can be used for statistical analysis, data-simulation, graphing, and lots of other stuff. Another free program is R-studio, that provides a nice graphic interface for R. Download R first, then download R-studio. Both can run on PCs, Macs or Linux. Students will be learning R in the stats labs using the lab manual .\n\n\n\n\nGoogle is great, Google your problem\nStackoverflow is great, google will often take you there because someone has already asked your question, and someone else has answered, usually many people have answered your question many ways."
+  }
+]
