@@ -212,11 +212,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header><section id="libraries" class="level1" data-number="1"><h1 data-number="1">
 <span class="header-section-number">1</span> Libraries</h1>
-<div class="cell" data-hash="02_data_acquisition_cache/html/unnamed-chunk-1_3f01a15d96685e3e391161983a75079a">
+<div class="cell" data-hash="02_data_acquisition_cache/html/unnamed-chunk-1_c40256ea3776ec67d1e848673d6250ee">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(RSQLite)</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(jsonlite)</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-4"><a href="#cb1-4"></a>con <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(<span class="at">drv =</span> <span class="fu">SQLite</span>(), <span class="at">dbname =</span> <span class="st">'C:/Users/sedit/Desktop/SadiR/ss23-bdsb-Sadtom98/content/01_journal/01_tidyverse_files/Chinook_Sqlite.sqlite'</span>)</span>
+<span id="cb1-4"><a href="#cb1-4"></a>con <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(<span class="at">drv =</span> <span class="fu">SQLite</span>(), <span class="at">dbname =</span> <span class="st">'C:/Users/sedit/Desktop/SadiR/ss23-bdsb-Sadtom98/content/01_journal/02_data_acquisition_/Chinook_Sqlite.sqlite'</span>)</span>
 <span id="cb1-5"><a href="#cb1-5"></a><span class="fu">dbListTables</span>(con)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt;  [1] "Album"         "Artist"        "Customer"      "Employee"     
@@ -245,7 +245,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb6-4"><a href="#cb6-4"></a>resp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt; Response [https://swapi.dev/api/people/1/]
-#&gt;   Date: 2023-05-24 03:09
+#&gt;   Date: 2023-05-24 03:15
 #&gt;   Status: 200
 #&gt;   Content-Type: application/json
 #&gt;   Size: 647 B</code></pre>
@@ -253,7 +253,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section><section id="example" class="level1" data-number="2"><h1 data-number="2">
 <span class="header-section-number">2</span> Example</h1>
-<div class="cell" data-hash="02_data_acquisition_cache/html/unnamed-chunk-2_85e7577ec9aa183e1d494a5d21786abb">
+<div class="cell" data-hash="02_data_acquisition_cache/html/unnamed-chunk-2_b1f0a72a3e7d302fdd4183dcc4882410">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>url <span class="ot">&lt;-</span> <span class="st">"https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"</span></span>
 <span id="cb8-2"><a href="#cb8-2"></a><span class="co"># use that URL to scrape the S&amp;P 500 table using rvest</span></span>
 <span id="cb8-3"><a href="#cb8-3"></a><span class="fu">library</span>(rvest)</span>
@@ -267,7 +267,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb8-11"><a href="#cb8-11"></a>          <span class="co"># Extract the table and turn the list into a tibble</span></span>
 <span id="cb8-12"><a href="#cb8-12"></a>          <span class="fu">html_table</span>() <span class="sc">%&gt;%</span> </span>
 <span id="cb8-13"><a href="#cb8-13"></a>          .[[<span class="dv">1</span>]] <span class="sc">%&gt;%</span> </span>
-<span id="cb8-14"><a href="#cb8-14"></a>          <span class="fu">as_tibble</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-14"><a href="#cb8-14"></a>          <span class="fu">as_tibble</span>()</span>
+<span id="cb8-15"><a href="#cb8-15"></a>bike_data_lst <span class="ot">&lt;-</span> <span class="fu">fromJSON</span>(<span class="st">"C:/Users/sedit/Desktop/SadiR/ss23-bdsb-Sadtom98/content/01_journal/02_data_acquisition_/bike_data.json"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
