@@ -131,7 +131,7 @@ for (i in 2:9) {
                                      bike.price = as.numeric(data$pricings))
 }
 
-head(bike_data, 10)
+head(bike_data)
 ```
 
 
