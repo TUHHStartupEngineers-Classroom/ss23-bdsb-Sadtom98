@@ -69,7 +69,7 @@ sales_by_year_category_1_tbl
 covid_data_tbl <- read_csv("https://covid.ourworldindata.org/data/owid-covid-data.csv")
 case_data <- covid_data_tbl %>% filter(location%in% c("France", "Germany", "Spain", "United Kingdom", "United States"))
 
-case_data %>% ggplot(aes(date, total_cases, color = location)) + geom_point(size = 1)
+case_data %>% ggplot(aes(x = date, y = total_cases, color = location, position = "bottom")) + geom_smooth() + labs(title = "COVID 19 confirmed cases")
 
 ```
 
