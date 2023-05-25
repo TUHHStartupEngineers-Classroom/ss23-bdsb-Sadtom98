@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.2.475">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
 <meta name="author" content="Sadi Tomtulu">
-
 <title>MyLabJournal - Data Wrangling</title>
 <style>
 code{white-space: pre-wrap;}
@@ -21,8 +18,70 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
-
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
@@ -42,8 +101,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<script id="quarto-search-options" type="application/json">{
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -61,17 +119,13 @@ ul.task-list li input[type="checkbox"] {
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit"
   }
-}</script>
-
-
+}</script><link href="../../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="../../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 </head>
-
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
-      <div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">MyLabJournal</span>
@@ -82,7 +136,7 @@ ul.task-list li input[type="checkbox"] {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
+<li class="nav-item">
     <a class="nav-link" href="../../index.html">
  <span class="menu-text">Home</span></a>
   </li>  
@@ -90,8 +144,8 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-journal" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Journal</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-journal">    
-        <li>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-journal">
+<li>
     <a class="dropdown-item" href="../../content/01_journal/01_tidyverse.html">
  <span class="dropdown-text">01 Tidyverse</span></a>
   </li>  
@@ -108,7 +162,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">04 Data Visualization</span></a>
   </li>  
     </ul>
-  </li>
+</li>
   <li class="nav-item">
     <a class="nav-link" href="../../content/02_notes/05_class_notes.html">
  <span class="menu-text">Class notes</span></a>
@@ -118,26 +172,27 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Links</span></a>
   </li>  
 </ul>
-              <div class="quarto-toggle-container">
+<div class="quarto-toggle-container">
                   <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
               </div>
               <div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
-    </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Contents</h2>
+   
+  <ul class="collapse">
+<li><a href="#data-wrangling" id="toc-data-wrangling" class="nav-link active" data-scroll-target="#data-wrangling"><span class="toc-section-number">1</span>  Data Wrangling</a></li>
+  <li><a href="#challange" id="toc-challange" class="nav-link" data-scroll-target="#challange"><span class="toc-section-number">2</span>  Challange</a></li>
+  <li><a href="#libraries-and-data-extraction" id="toc-libraries-and-data-extraction" class="nav-link" data-scroll-target="#libraries-and-data-extraction"><span class="toc-section-number">3</span>  Libraries and data extraction</a></li>
+  <li><a href="#answers-to-questions" id="toc-answers-to-questions" class="nav-link" data-scroll-target="#answers-to-questions"><span class="toc-section-number">4</span>  Answers to questions</a></li>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title">Data Wrangling</h1>
 </div>
 
@@ -157,26 +212,238 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
-</header>
+</header><section id="data-wrangling" class="level1" data-number="1"><h1 data-number="1">
+<span class="header-section-number">1</span> Data Wrangling</h1>
+</section><section id="challange" class="level1" data-number="2"><h1 data-number="2">
+<span class="header-section-number">2</span> Challange</h1>
+</section><section id="libraries-and-data-extraction" class="level1" data-number="3"><h1 data-number="3">
+<span class="header-section-number">3</span> Libraries and data extraction</h1>
+<div class="cell" data-hash="03_data_wrangling_cache/html/unnamed-chunk-1_c2c1ff57f7f4b253d3ca9c0f2930a145">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>#&gt; Warning: package 'tidyverse' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>#&gt; Warning: package 'ggplot2' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>#&gt; Warning: package 'tibble' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>#&gt; Warning: package 'tidyr' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>#&gt; Warning: package 'readr' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>#&gt; Warning: package 'purrr' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>#&gt; Warning: package 'dplyr' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>#&gt; Warning: package 'stringr' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>#&gt; Warning: package 'forcats' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>#&gt; Warning: package 'lubridate' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>#&gt; ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+#&gt; ✔ dplyr     1.1.2     ✔ readr     2.1.4
+#&gt; ✔ forcats   1.0.0     ✔ stringr   1.5.0
+#&gt; ✔ ggplot2   3.4.2     ✔ tibble    3.2.1
+#&gt; ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+#&gt; ✔ purrr     1.0.1     
+#&gt; ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+#&gt; ✖ dplyr::filter() masks stats::filter()
+#&gt; ✖ dplyr::lag()    masks stats::lag()
+#&gt; ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">library</span>(vroom)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>#&gt; Warning: package 'vroom' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>#&gt; 
+#&gt; Attaching package: 'vroom'
+#&gt; 
+#&gt; The following objects are masked from 'package:readr':
+#&gt; 
+#&gt;     as.col_spec, col_character, col_date, col_datetime, col_double,
+#&gt;     col_factor, col_guess, col_integer, col_logical, col_number,
+#&gt;     col_skip, col_time, cols, cols_condense, cols_only, date_names,
+#&gt;     date_names_lang, date_names_langs, default_locale, fwf_cols,
+#&gt;     fwf_empty, fwf_positions, fwf_widths, locale, output_column,
+#&gt;     problems, spec</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># Data Table</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="fu">library</span>(data.table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>#&gt; 
+#&gt; Attaching package: 'data.table'
+#&gt; 
+#&gt; The following objects are masked from 'package:lubridate':
+#&gt; 
+#&gt;     hour, isoweek, mday, minute, month, quarter, second, wday, week,
+#&gt;     yday, year
+#&gt; 
+#&gt; The following objects are masked from 'package:dplyr':
+#&gt; 
+#&gt;     between, first, last
+#&gt; 
+#&gt; The following object is masked from 'package:purrr':
+#&gt; 
+#&gt;     transpose</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># Counter</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="fu">library</span>(tictoc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>#&gt; Warning: package 'tictoc' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>#&gt; 
+#&gt; Attaching package: 'tictoc'
+#&gt; 
+#&gt; The following object is masked from 'package:data.table':
+#&gt; 
+#&gt;     shift</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>col_types <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb21-2"><a href="#cb21-2"></a>  <span class="at">id =</span> <span class="fu">col_character</span>(),</span>
+<span id="cb21-3"><a href="#cb21-3"></a>  <span class="at">type =</span> <span class="fu">col_character</span>(),</span>
+<span id="cb21-4"><a href="#cb21-4"></a>  <span class="at">number =</span> <span class="fu">col_character</span>(),</span>
+<span id="cb21-5"><a href="#cb21-5"></a>  <span class="at">country =</span> <span class="fu">col_character</span>(),</span>
+<span id="cb21-6"><a href="#cb21-6"></a>  <span class="at">date =</span> <span class="fu">col_date</span>(<span class="st">"%Y-%m-%d"</span>),</span>
+<span id="cb21-7"><a href="#cb21-7"></a>  <span class="at">abstract =</span> <span class="fu">col_character</span>(),</span>
+<span id="cb21-8"><a href="#cb21-8"></a>  <span class="at">title =</span> <span class="fu">col_character</span>(),</span>
+<span id="cb21-9"><a href="#cb21-9"></a>  <span class="at">kind =</span> <span class="fu">col_character</span>(),</span>
+<span id="cb21-10"><a href="#cb21-10"></a>  <span class="at">num_claims =</span> <span class="fu">col_double</span>(),</span>
+<span id="cb21-11"><a href="#cb21-11"></a>  <span class="at">filename =</span> <span class="fu">col_character</span>(),</span>
+<span id="cb21-12"><a href="#cb21-12"></a>  <span class="at">withdrawn =</span> <span class="fu">col_double</span>()</span>
+<span id="cb21-13"><a href="#cb21-13"></a>)</span>
+<span id="cb21-14"><a href="#cb21-14"></a></span>
+<span id="cb21-15"><a href="#cb21-15"></a>patent_tbl <span class="ot">&lt;-</span> <span class="fu">vroom</span>(</span>
+<span id="cb21-16"><a href="#cb21-16"></a>            <span class="at">file       =</span> <span class="st">"C:/Users/sedit/Desktop/SadiR/ss23-bdsb-Sadtom98/content/01_journal/03_data_wrangling_/patent.tsv"</span>, </span>
+<span id="cb21-17"><a href="#cb21-17"></a>            <span class="at">delim      =</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>, </span>
+<span id="cb21-18"><a href="#cb21-18"></a>            <span class="at">col_types  =</span> col_types,</span>
+<span id="cb21-19"><a href="#cb21-19"></a>            <span class="at">na         =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"NA"</span>, <span class="st">"NULL"</span>)</span>
+<span id="cb21-20"><a href="#cb21-20"></a>        )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>#&gt; Warning: The following named parsers don't match the column names: type, number,
+#&gt; country, abstract, title, kind, filename, withdrawn</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>patent_asignee_tbl <span class="ot">&lt;-</span> <span class="fu">vroom</span>(</span>
+<span id="cb23-2"><a href="#cb23-2"></a>            <span class="at">file       =</span> <span class="st">"C:/Users/sedit/Desktop/SadiR/ss23-bdsb-Sadtom98/content/01_journal/03_data_wrangling_/patent_assignee.tsv"</span>, </span>
+<span id="cb23-3"><a href="#cb23-3"></a>            <span class="at">delim      =</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>, </span>
+<span id="cb23-4"><a href="#cb23-4"></a>            <span class="at">col_types  =</span> col_types,</span>
+<span id="cb23-5"><a href="#cb23-5"></a>            <span class="at">na         =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"NA"</span>, <span class="st">"NULL"</span>)</span>
+<span id="cb23-6"><a href="#cb23-6"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>#&gt; Warning: The following named parsers don't match the column names: id, type,
+#&gt; number, country, date, abstract, title, kind, num_claims, filename, withdrawn</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>asignee_tbl <span class="ot">&lt;-</span> <span class="fu">vroom</span>(</span>
+<span id="cb25-2"><a href="#cb25-2"></a>            <span class="at">file       =</span> <span class="st">"C:/Users/sedit/Desktop/SadiR/ss23-bdsb-Sadtom98/content/01_journal/03_data_wrangling_/assignee.tsv"</span>, </span>
+<span id="cb25-3"><a href="#cb25-3"></a>            <span class="at">delim      =</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>, </span>
+<span id="cb25-4"><a href="#cb25-4"></a>            <span class="at">col_types  =</span> col_types,</span>
+<span id="cb25-5"><a href="#cb25-5"></a>            <span class="at">na         =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"NA"</span>, <span class="st">"NULL"</span>)</span>
+<span id="cb25-6"><a href="#cb25-6"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>#&gt; Warning: The following named parsers don't match the column names: number,
+#&gt; country, date, abstract, title, kind, num_claims, filename, withdrawn</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>uspc_tbl <span class="ot">&lt;-</span> <span class="fu">vroom</span>(</span>
+<span id="cb27-2"><a href="#cb27-2"></a>            <span class="at">file       =</span> <span class="st">"C:/Users/sedit/Desktop/SadiR/ss23-bdsb-Sadtom98/content/01_journal/03_data_wrangling_/uspc.tsv"</span>, </span>
+<span id="cb27-3"><a href="#cb27-3"></a>            <span class="at">delim      =</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>, </span>
+<span id="cb27-4"><a href="#cb27-4"></a>            <span class="at">col_types  =</span> col_types,</span>
+<span id="cb27-5"><a href="#cb27-5"></a>            <span class="at">na         =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"NA"</span>, <span class="st">"NULL"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb27-6"><a href="#cb27-6"></a>            <span class="fu">transform</span>(<span class="at">patent_id =</span> <span class="fu">as.character</span>(patent_id))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>#&gt; Warning: The following named parsers don't match the column names: id, type,
+#&gt; number, country, date, abstract, title, kind, num_claims, filename, withdrawn</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>joined_data <span class="ot">&lt;-</span> asignee_tbl <span class="sc">%&gt;%</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a>  <span class="fu">left_join</span>(patent_asignee_tbl, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"id"</span> <span class="ot">=</span> <span class="st">"assignee_id"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb29-3"><a href="#cb29-3"></a>  <span class="fu">left_join</span>(patent_tbl, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"patent_id"</span> <span class="ot">=</span> <span class="st">"id"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb29-4"><a href="#cb29-4"></a>  <span class="fu">left_join</span>(uspc_tbl, <span class="at">by =</span> <span class="st">"patent_id"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>#&gt; Warning: One or more parsing issues, call `problems()` on your data frame for details,
+#&gt; e.g.:
+#&gt;   dat &lt;- vroom(...)
+#&gt;   problems(dat)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>#&gt; Warning in left_join(., uspc_tbl, by = "patent_id"): Detected an unexpected many-to-many relationship between `x` and `y`.
+#&gt; ℹ Row 1 of `x` matches multiple rows in `y`.
+#&gt; ℹ Row 376875 of `y` matches multiple rows in `x`.
+#&gt; ℹ If a many-to-many relationship is expected, set `relationship =
+#&gt;   "many-to-many"` to silence this warning.</code></pre>
+</div>
+</div>
+</section><section id="answers-to-questions" class="level1" data-number="4"><h1 data-number="4">
+<span class="header-section-number">4</span> Answers to questions</h1>
+<div class="cell" data-hash="03_data_wrangling_cache/html/unnamed-chunk-2_bf2cd38d63d8a616f073098fd9e930a3">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>patent_leaders <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">table</span>(joined_data<span class="sc">$</span>organization), <span class="at">decreasing=</span>T)[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>] <span class="sc">%&gt;%</span></span>
+<span id="cb32-2"><a href="#cb32-2"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb32-3"><a href="#cb32-3"></a>  <span class="fu">mutate</span>(<span class="at">Var1 =</span> Var1 <span class="sc">%&gt;%</span> <span class="fu">str_to_title</span>())</span>
+<span id="cb32-4"><a href="#cb32-4"></a></span>
+<span id="cb32-5"><a href="#cb32-5"></a><span class="fu">data.table</span>(</span>
+<span id="cb32-6"><a href="#cb32-6"></a>  <span class="st">"Org"</span> <span class="ot">=</span> patent_leaders<span class="sc">$</span>Var1,</span>
+<span id="cb32-7"><a href="#cb32-7"></a>  <span class="st">"Patents"</span> <span class="ot">=</span> patent_leaders<span class="sc">$</span>Freq)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
 
-<div class="callout-note callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Note
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["Org"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Patents"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"International Business Machines Corporation","2":"20669"},{"1":"Samsung Electronics Co., Ltd.","2":"16002"},{"1":"Canon Kabushiki Kaisha","2":"10276"},{"1":"Sony Corporation","2":"9022"},{"1":"Microsoft Corporation","2":"8113"},{"1":"Qualcomm Incorporated","2":"7814"},{"1":"Kabushiki Kaisha Toshiba","2":"7440"},{"1":"Google Inc.","2":"6815"},{"1":"Lg Electronics Inc.","2":"6292"},{"1":"Panasonic Corporation","2":"6097"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<p>You can delete everything in here and start fresh.</p>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>wrangled_august <span class="ot">&lt;-</span> joined_data <span class="sc">%&gt;%</span> </span>
+<span id="cb33-2"><a href="#cb33-2"></a>  <span class="fu">select</span>(organization, date) <span class="sc">%&gt;%</span></span>
+<span id="cb33-3"><a href="#cb33-3"></a>  <span class="fu">filter</span>(date <span class="sc">&gt;=</span> <span class="st">"2014-08-01"</span> <span class="sc">&amp;</span> date <span class="sc">&lt;=</span> <span class="st">"2014-08-31"</span>)</span>
+<span id="cb33-4"><a href="#cb33-4"></a></span>
+<span id="cb33-5"><a href="#cb33-5"></a>patent_leaders_august <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">table</span>(wrangled_august<span class="sc">$</span>organization), <span class="at">decreasing=</span>T)[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>] <span class="sc">%&gt;%</span></span>
+<span id="cb33-6"><a href="#cb33-6"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb33-7"><a href="#cb33-7"></a>  <span class="fu">mutate</span>(<span class="at">Var1 =</span> Var1 <span class="sc">%&gt;%</span> <span class="fu">str_to_title</span>())</span>
+<span id="cb33-8"><a href="#cb33-8"></a></span>
+<span id="cb33-9"><a href="#cb33-9"></a><span class="fu">data.table</span>(</span>
+<span id="cb33-10"><a href="#cb33-10"></a>  <span class="st">"Org"</span> <span class="ot">=</span> patent_leaders_august<span class="sc">$</span>Var1,</span>
+<span id="cb33-11"><a href="#cb33-11"></a>  <span class="st">"Patents"</span> <span class="ot">=</span> patent_leaders_august<span class="sc">$</span>Freq)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["Org"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Patents"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"International Business Machines Corporation","2":"1990"},{"1":"Samsung Electronics Co., Ltd.","2":"1361"},{"1":"Microsoft Corporation","2":"876"},{"1":"Canon Kabushiki Kaisha","2":"854"},{"1":"Sony Corporation","2":"666"},{"1":"Qualcomm Incorporated","2":"639"},{"1":"Google Inc.","2":"627"},{"1":"Kabushiki Kaisha Toshiba","2":"584"},{"1":"Apple Inc.","2":"568"},{"1":"Hon Hai Precision Industry Co., Ltd.","2":"546"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>wrangled_class <span class="ot">&lt;-</span> joined_data <span class="sc">%&gt;%</span></span>
+<span id="cb34-2"><a href="#cb34-2"></a>  <span class="fu">select</span>(organization, mainclass_id) <span class="sc">%&gt;%</span></span>
+<span id="cb34-3"><a href="#cb34-3"></a>  <span class="fu">filter</span>(organization <span class="sc">%in%</span> patent_leaders<span class="sc">$</span>Var1[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]) <span class="sc">%&gt;%</span> </span>
+<span id="cb34-4"><a href="#cb34-4"></a>  <span class="fu">subset</span>(mainclass_id <span class="sc">!=</span> <span class="st">"No longer published"</span>)</span>
+<span id="cb34-5"><a href="#cb34-5"></a></span>
+<span id="cb34-6"><a href="#cb34-6"></a>class_leaders <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">table</span>(wrangled_class<span class="sc">$</span>mainclass_id), <span class="at">decreasing=</span>T)[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>] <span class="sc">%&gt;%</span> </span>
+<span id="cb34-7"><a href="#cb34-7"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb34-8"><a href="#cb34-8"></a>  <span class="fu">mutate</span>(<span class="at">Var1 =</span> Var1 <span class="sc">%&gt;%</span> <span class="fu">str_to_title</span>())</span>
+<span id="cb34-9"><a href="#cb34-9"></a></span>
+<span id="cb34-10"><a href="#cb34-10"></a><span class="fu">data.table</span>(</span>
+<span id="cb34-11"><a href="#cb34-11"></a>  <span class="st">"Main class"</span> <span class="ot">=</span> class_leaders<span class="sc">$</span>Var1,</span>
+<span id="cb34-12"><a href="#cb34-12"></a>  <span class="st">"Patents"</span> <span class="ot">=</span> class_leaders<span class="sc">$</span>Freq)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["Main class"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Patents"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"257","2":"7710"},{"1":"438","2":"3911"},{"1":"348","2":"3848"},{"1":"709","2":"3678"},{"1":"707","2":"3089"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 </div>
 </div>
 
 
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
