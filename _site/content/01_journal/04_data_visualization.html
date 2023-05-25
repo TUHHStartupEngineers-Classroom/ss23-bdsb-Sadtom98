@@ -335,6 +335,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section><section id="challange-2" class="level1" data-number="5"><h1 data-number="5">
 <span class="header-section-number">5</span> Challange 2</h1>
+<div class="cell" data-hash="04_data_visualization_cache/html/unnamed-chunk-4_475e060f539cb662be1b944ea747834d">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>world <span class="ot">&lt;-</span> <span class="fu">map_data</span>(<span class="st">"world"</span>)</span>
+<span id="cb15-2"><a href="#cb15-2"></a></span>
+<span id="cb15-3"><a href="#cb15-3"></a>worldwide_mortality <span class="ot">&lt;-</span> covid_data_tbl <span class="sc">%&gt;%</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a>  <span class="fu">select</span>(location, date, total_deaths, population) <span class="sc">%&gt;%</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a>  <span class="fu">drop_na</span>(location) <span class="sc">%&gt;%</span></span>
+<span id="cb15-6"><a href="#cb15-6"></a>  <span class="fu">mutate</span>(<span class="at">location =</span> <span class="fu">case_when</span>(</span>
+<span id="cb15-7"><a href="#cb15-7"></a>    location <span class="sc">==</span> <span class="st">"United Kingdom"</span> <span class="sc">~</span> <span class="st">"UK"</span>,</span>
+<span id="cb15-8"><a href="#cb15-8"></a>    location <span class="sc">==</span> <span class="st">"United States"</span> <span class="sc">~</span> <span class="st">"USA"</span>,</span>
+<span id="cb15-9"><a href="#cb15-9"></a>    location <span class="sc">==</span> <span class="st">"Democratic Republic of Congo"</span> <span class="sc">~</span> <span class="st">"Democratic Republic of the Congo"</span>,</span>
+<span id="cb15-10"><a href="#cb15-10"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> location )) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-11"><a href="#cb15-11"></a>  <span class="fu">distinct</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb15-12"><a href="#cb15-12"></a>  <span class="fu">group_by</span>(location) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-13"><a href="#cb15-13"></a>  <span class="fu">filter</span>(date <span class="sc">==</span> <span class="fu">max</span>(date)) <span class="sc">%&gt;%</span></span>
+<span id="cb15-14"><a href="#cb15-14"></a>  <span class="fu">mutate</span>(<span class="at">death_rate =</span> total_deaths <span class="sc">/</span> population) <span class="sc">%&gt;%</span></span>
+<span id="cb15-15"><a href="#cb15-15"></a>  <span class="fu">rename</span>(<span class="at">region =</span> location) <span class="sc">%&gt;%</span></span>
+<span id="cb15-16"><a href="#cb15-16"></a>  <span class="fu">left_join</span>(world, <span class="at">by =</span> <span class="st">"region"</span>)</span>
+<span id="cb15-17"><a href="#cb15-17"></a></span>
+<span id="cb15-18"><a href="#cb15-18"></a>worldwide_mortality <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat)) <span class="sc">+</span> </span>
+<span id="cb15-19"><a href="#cb15-19"></a>  <span class="fu">geom_polygon</span>(<span class="fu">aes</span>(<span class="at">group =</span> group, <span class="at">fill =</span> death_rate)) <span class="sc">+</span></span>
+<span id="cb15-20"><a href="#cb15-20"></a>  <span class="fu">labs</span>(</span>
+<span id="cb15-21"><a href="#cb15-21"></a>    <span class="at">title =</span> <span class="st">"Mortality Rate Around the World (deaths / population)"</span>,</span>
+<span id="cb15-22"><a href="#cb15-22"></a>    <span class="at">fill =</span> <span class="st">"Mortality Rate"</span></span>
+<span id="cb15-23"><a href="#cb15-23"></a>  ) <span class="sc">+</span></span>
+<span id="cb15-24"><a href="#cb15-24"></a>  <span class="fu">theme</span>(<span class="at">axis.line =</span> <span class="fu">element_blank</span>(), <span class="at">axis.text =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb15-25"><a href="#cb15-25"></a>        <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(), <span class="at">axis.title =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="04_data_visualization_files/figure-html/unnamed-chunk-4-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="04_data_visualization_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
 
 
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
@@ -586,7 +619,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","loop":true,"closeEffect":"zoom","descPosition":"bottom","selector":".lightbox"});</script>
+<script>var lightboxQuarto = GLightbox({"loop":true,"openEffect":"zoom","selector":".lightbox","closeEffect":"zoom","descPosition":"bottom"});</script>
 
 
 </body></html>

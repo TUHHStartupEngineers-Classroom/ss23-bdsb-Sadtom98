@@ -74,3 +74,31 @@ case_data %>% ggplot(aes(x = date, y = total_cases, color = location, position =
 ```
 
 # Challange 2
+
+```{r}
+world <- map_data("world")
+
+worldwide_mortality <- covid_data_tbl %>%
+  select(location, date, total_deaths, population) %>%
+  drop_na(location) %>%
+  mutate(location = case_when(
+    location == "United Kingdom" ~ "UK",
+    location == "United States" ~ "USA",
+    location == "Democratic Republic of Congo" ~ "Democratic Republic of the Congo",
+    TRUE ~ location )) %>% 
+  distinct() %>%
+  group_by(location) %>% 
+  filter(date == max(date)) %>%
+  mutate(death_rate = total_deaths / population) %>%
+  rename(region = location) %>%
+  left_join(world, by = "region")
+
+worldwide_mortality %>% ggplot(aes(x = long, y = lat)) + 
+  geom_polygon(aes(group = group, fill = death_rate)) +
+  labs(
+    title = "Mortality Rate Around the World (deaths / population)",
+    fill = "Mortality Rate"
+  ) +
+  theme(axis.line = element_blank(), axis.text = element_blank(),
+        axis.ticks = element_blank(), axis.title = element_blank())
+```
