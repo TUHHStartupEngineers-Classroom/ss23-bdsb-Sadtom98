@@ -1,98 +1,178 @@
 ---
 title: "Tidyverse"
-author: "Joschka Schwarz"
+author: "Sadi Tomtulu"
 ---
 
-::: callout-note
-You can delete everything in here and start fresh.
-:::
+# Data Science at TUHH ------------------------------------------------------
+# SALES ANALYSIS ----
 
-This is a `.qmd` file. It is plain text with special features. Any time you write just like this, it will be compiled to normal text in the website. If you put a \# in front of your text, it will create a top level-header.
-
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
-
-# Text Formatting
-
-*italics* and **bold**
-
-superscript^2^ / subscript~2~
-
-~~strikethrough~~
-
-`verbatim code`
-
-> Blockquote
-
-# Headings
-
-## Header 2
-### Header 3
-#### Header 4
-##### Header 5
-###### Header 6
-
-# Links & Images
-
-<https://quarto.org>
-
-[Quarto](https://quarto.org)
-
-![Caption](../../assets/img/elephant.png)
-
-[![Caption](../../assets/img/elephant.png)](https://quarto.org)
-
-[![Caption](../../assets/img/elephant.png)](https://quarto.org "An elephant")
-
-
-# Lists
-
-* unordered list
-    + sub-item 1
-    + sub-item 2
-        - sub-sub-item 1
-        
-*   item 2
-
-    Continued (indent 4 spaces)
-    
-    
-1. ordered list
-2. item 2
-    i) sub-item 1
-         A.  sub-sub-item 1
-         
-(@)  A list whose numbering
-
-continues after
-
-(@)  an interruption
-
-# Tables
-
-| Right | Left | Default | Center |
-|------:|:-----|---------|:------:|
-|   12  |  12  |    12   |    12  |
-|  123  |  123 |   123   |   123  |
-|    1  |    1 |     1   |     1  |
-
-# Source Code
-
-Use ``` to delimit blocks of source code:
-
-```
-code
-```
-
-Add a language to syntax highlight code blocks:
+# 1.0 Load libraries ----
 
 ```{r}
-1 + 1
+library(tidyverse)
+
+
+library(readxl)
+
+library(lubridate)
+
+library("writexl")
 ```
 
-```{r}
-cars
-```
+# 2.0 Importing Files ----
 
 ```{r}
-plot(cars)
+bikes <- read_excel(path = "C:/Users/sedit/Desktop/SadiR/ss23-bdsb-Sadtom98/content/01_journal/01_tidyverse_files/Bikes/01_bike_sales/01_raw_data/bikes.xlsx")
+
+
+bikeshops <- read_excel(path = "C:/Users/sedit/Desktop/SadiR/ss23-bdsb-Sadtom98/content/01_journal/01_tidyverse_files/Bikes/01_bike_sales/01_raw_data/bikeshops.xlsx")
+
+
+orderlines <- read_excel("C:/Users/sedit/Desktop/SadiR/ss23-bdsb-Sadtom98/content/01_journal/01_tidyverse_files/Bikes/01_bike_sales/01_raw_data/orderlines.xlsx")
 ```
+
+# 3.0 Examining Data ----
+
+```{r}
+glimpse(orderlines)
+```
+
+# 4.0 Joining Data ----
+
+```{r}
+bike_orderlines <- left_join(orderlines, bikes, by = c("product.id" = "bike.id")) %>% left_join(bikeshops, by = c("customer.id" = "bikeshop.id"))
+```
+
+# 5.0 Wrangling Data ----
+
+```{r}
+bike_orderlines_wrangled <- bike_orderlines %>%
+  separate(col    = location,
+           into   = c("City", "State"), sep = ",") %>% mutate(total.price = price * quantity) %>%
+set_names(names(.) %>% str_replace_all("\\.", "_"))
+```
+
+# 6.0 Business Insights ----
+# 6.1 Sales by State ----
+
+
+
+```{r}
+sales_by_state <- bike_orderlines_wrangled %>%
+ 
+  # Select columns
+  select(order_date, total_price, State) %>%
+
+  # Add year column
+  mutate(year = year(order_date)) %>%
+ 
+  # Grouping by year and summarizing sales
+  group_by(State) %>% 
+  summarize(sales = sum(total_price)) %>%
+ 
+  # Optional: Add a column that turns the numbers into a currency format 
+  # (makes it in the plot optically more appealing)
+  # mutate(sales_text = scales::dollar(sales)) <- Works for dollar values
+  mutate(state_text = scales::dollar(sales, big.mark = ".", 
+                                     decimal.mark = ",", 
+                                     prefix = "", 
+                                     suffix = " €"))
+
+sales_by_state
+```
+
+
+# Step 1 - Manipulate
+
+# Step 2 - Visualize
+
+
+```{r}
+sales_by_state %>%
+ggplot(mapping = aes(x = State, y = sales, fill = State)) +
+
+  # Geometries
+  geom_col() + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+
+# 6.2 Sales by Year and State ----
+
+# Step 1 - Manipulate
+
+
+```{r}
+sales_by_year_state <- bike_orderlines_wrangled %>%
+ 
+  # Select columns
+  select(order_date, total_price, State) %>%
+
+  # Add year column
+  mutate(year = year(order_date)) %>%
+ 
+  # Grouping by year and summarizing sales
+  group_by(year, State) %>% 
+  summarize(sales = sum(total_price)) %>%
+ 
+  # Optional: Add a column that turns the numbers into a currency format 
+  # (makes it in the plot optically more appealing)
+  # mutate(sales_text = scales::dollar(sales)) <- Works for dollar values
+  mutate(state_text = scales::dollar(sales, big.mark = ".", 
+                                     decimal.mark = ",", 
+                                     prefix = "", 
+                                     suffix = " €"))
+
+sales_by_year_state
+```
+
+
+# Step 2 - Visualize
+
+
+```{r plot, fig.width=10, fig.height=7}
+sales_by_year_state %>%
+
+  # Set up x, y, fill
+  ggplot(aes(x = year, y = sales, fill = year)) +
+
+  # Geometries
+  geom_col() + # Run up to here to get a stacked bar plot
+
+  # Facet
+  facet_wrap(~ State) +
+
+  # Formatting
+  scale_y_continuous(labels = scales::dollar_format(big.mark = ".", 
+                                                    decimal.mark = ",", 
+                                                    prefix = "", 
+                                                    suffix = " €"))
+```
+
+
+# 7.0 Writing Files ----
+
+# 7.1 Excel ----
+
+
+```{r}
+write_xlsx(bike_orderlines_wrangled, path = "C:/Users/sedit/Desktop/SadiR/ss23-bdsb-Sadtom98/content/01_journal/01_tidyverse_files/Bikes/01_bike_sales/02_wrangled_data/bike_orderlines.xlsx")
+```
+
+
+# 7.2 CSV ----
+
+
+```{r}
+write_csv(bike_orderlines_wrangled, file = "C:/Users/sedit/Desktop/SadiR/ss23-bdsb-Sadtom98/content/01_journal/01_tidyverse_files/Bikes/01_bike_sales/02_wrangled_data/bike_orderlines.csv")
+```
+
+
+# 7.3 RDS ----
+
+
+```{r}
+write_rds(bike_orderlines_wrangled, file = "C:/Users/sedit/Desktop/SadiR/ss23-bdsb-Sadtom98/content/01_journal/01_tidyverse_files/Bikes/01_bike_sales/02_wrangled_data/bike_orderlines.rds")
+```
+
+

@@ -1,8 +1,104 @@
 ---
 title: "Data Visualization"
-author: "Joschka Schwarz"
+author: "Sadi Tomtulu"
 ---
 
-::: callout-note
-You can delete everything in here and start fresh.
-:::
+# Data Visualization
+
+# Libraries
+
+```{r}
+library(scales)
+library(tidyverse)
+library(lubridate)
+```
+
+# Examples
+
+```{r}
+
+dollar(100, prefix = "", suffix = " €",
+          big.mark = ".", decimal.mark = ",")
+
+bike_orderlines_tbl <- read_rds("C:/Users/sedit/Desktop/SadiR/ss23-bdsb-Sadtom98/content/01_journal/01_tidyverse_files/Bikes/01_bike_sales/02_wrangled_data/bike_orderlines.rds")
+
+sales_by_year_tbl <- bike_orderlines_tbl %>%
+
+  # Selecting columns to focus on and adding a year column
+  select(order_date, total_price) %>%
+  mutate(year = year(order_date)) %>%
+
+  # Grouping by year, and summarizing sales
+  group_by(year) %>%
+  summarize(sales = sum(total_price)) %>%
+  ungroup() %>%
+
+  # € Format Text
+  mutate(sales_text = scales::dollar(sales, 
+                                     big.mark     = ".", 
+                                     decimal.mark = ",", 
+                                     prefix       = "", 
+                                     suffix       = " €"))
+sales_by_year_tbl %>% ggplot(aes(x = year, y = sales, color = sales)) +
+  geom_line(linewidth = 1) +
+  geom_point(aes(size = sales)) +
+  geom_smooth(method = "lm", se = FALSE)
+
+sales_by_year_category_1_tbl <- bike_orderlines_tbl %>%
+    separate(col  = category,
+           into = c("category_1", "category_2", "category_3"),
+           sep  = " - ", remove = FALSE) %>%
+    select(order_date, category_1, total_price) %>%
+
+    mutate(order_date = ymd(order_date)) %>%
+    mutate(year = year(order_date)) %>%
+
+    group_by(category_1, year) %>%
+    summarize(revenue = sum(total_price)) %>%
+    ungroup() %>%
+
+    # Convert character vectors to factors
+    # Arrange by year and revenue
+    mutate(category_1 = fct_reorder2(category_1, year, revenue))
+sales_by_year_category_1_tbl
+```
+
+# Challange 1
+
+```{r}
+covid_data_tbl <- read_csv("https://covid.ourworldindata.org/data/owid-covid-data.csv")
+case_data <- covid_data_tbl %>% filter(location%in% c("France", "Germany", "Spain", "United Kingdom", "United States"))
+
+case_data %>% ggplot(aes(x = date, y = total_cases, color = location, position = "bottom")) + geom_smooth() + labs(title = "COVID 19 confirmed cases")
+
+```
+
+# Challange 2
+
+```{r}
+world <- map_data("world")
+
+worldwide_mortality <- covid_data_tbl %>%
+  select(location, date, total_deaths, population) %>%
+  drop_na(location) %>%
+  mutate(location = case_when(
+    location == "United Kingdom" ~ "UK",
+    location == "United States" ~ "USA",
+    location == "Democratic Republic of Congo" ~ "Democratic Republic of the Congo",
+    TRUE ~ location )) %>% 
+  distinct() %>%
+  group_by(location) %>% 
+  filter(date == max(date)) %>%
+  mutate(death_rate = total_deaths / population) %>%
+  rename(region = location) %>%
+  left_join(world, by = "region")
+
+worldwide_mortality %>% ggplot(aes(x = long, y = lat)) + 
+  geom_polygon(aes(group = group, fill = death_rate)) +
+  labs(
+    title = "Mortality Rate Around the World (deaths / population)",
+    fill = "Mortality Rate"
+  ) +
+  theme(axis.line = element_blank(), axis.text = element_blank(),
+        axis.ticks = element_blank(), axis.title = element_blank())
+```
