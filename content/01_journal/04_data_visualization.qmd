@@ -73,3 +73,4 @@ case_data %>% ggplot(aes(x = date, y = total_cases, color = location, position =
 
 ```
 
+# Challange 2
