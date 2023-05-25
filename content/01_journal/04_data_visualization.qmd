@@ -4,16 +4,21 @@ author: "Sadi Tomtulu"
 ---
 
 # Data Visualization
-# Examples
+
+# Libraries
 
 ```{r}
 library(scales)
+library(tidyverse)
+library(lubridate)
+```
+
+# Examples
+
+```{r}
 
 dollar(100, prefix = "", suffix = " €",
           big.mark = ".", decimal.mark = ",")
-
-library(tidyverse)
-library(lubridate)
 
 bike_orderlines_tbl <- read_rds("C:/Users/sedit/Desktop/SadiR/ss23-bdsb-Sadtom98/content/01_journal/01_tidyverse_files/Bikes/01_bike_sales/02_wrangled_data/bike_orderlines.rds")
 
@@ -36,7 +41,35 @@ sales_by_year_tbl <- bike_orderlines_tbl %>%
                                      suffix       = " €"))
 sales_by_year_tbl %>% ggplot(aes(x = year, y = sales, color = sales)) +
   geom_line(linewidth = 1) +
-  geom_point(aes(size = sales_by_year_tbl$sales)) +
+  geom_point(aes(size = sales)) +
   geom_smooth(method = "lm", se = FALSE)
 
+sales_by_year_category_1_tbl <- bike_orderlines_tbl %>%
+    separate(col  = category,
+           into = c("category_1", "category_2", "category_3"),
+           sep  = " - ", remove = FALSE) %>%
+    select(order_date, category_1, total_price) %>%
+
+    mutate(order_date = ymd(order_date)) %>%
+    mutate(year = year(order_date)) %>%
+
+    group_by(category_1, year) %>%
+    summarize(revenue = sum(total_price)) %>%
+    ungroup() %>%
+
+    # Convert character vectors to factors
+    # Arrange by year and revenue
+    mutate(category_1 = fct_reorder2(category_1, year, revenue))
+sales_by_year_category_1_tbl
 ```
+
+# Challange 1
+
+```{r}
+covid_data_tbl <- read_csv("https://covid.ourworldindata.org/data/owid-covid-data.csv")
+case_data <- covid_data_tbl %>% filter(location%in% c("France", "Germany", "Spain", "United Kingdom", "United States"))
+
+case_data %>% ggplot(aes(date, total_cases, color = location)) + geom_point(size = 1)
+
+```
+
